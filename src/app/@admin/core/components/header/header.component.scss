@@ -1,0 +1,8 @@
+@import "./../../../pages/admin.component.scss";
+
+button#sidebarToggle {
+  color: $admin-primary-color;
+  background: transparent;
+  border-color: transparent;
+  font-size: 30px;
+}
