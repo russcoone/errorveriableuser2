@@ -6,3 +6,13 @@ button#sidebarToggle {
   border-color: transparent;
   font-size: 30px;
 }
+button#sidebarToggle2 {
+  color: $admin-primary-color;
+  background: transparent;
+  border-color: transparent;
+  font-size: 30px;
+}
+
+.sidebar-heading2 a {
+  color: rgba(0, 0, 0, 0.55);
+}
