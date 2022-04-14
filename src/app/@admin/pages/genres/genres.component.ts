@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { IResultData } from '@core/interfaces/result-data.interface';
 import { ITableColumns } from '@core/interfaces/table-columns.interface';
-import { USERS_LIST_QUERY } from '@graphql/operations/query/user';
+import { GENRE_LIST_QUERY } from '@graphql/operations/query/genre';
 import { DocumentNode } from 'graphql';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  selector: 'app-genres',
+  templateUrl: './genres.component.html',
+  styleUrls: ['./genres.component.scss'],
 })
-export class UserComponent implements OnInit {
-  query: DocumentNode = USERS_LIST_QUERY;
+export class GenresComponent implements OnInit {
+  query: DocumentNode = GENRE_LIST_QUERY;
   context: object;
   itemsPage: number;
   resultData: IResultData;
@@ -21,10 +21,10 @@ export class UserComponent implements OnInit {
     this.context = {};
     this.itemsPage = 10;
     this.resultData = {
-      listkey: 'users',
-      definitionkey: 'users',
+      listkey: 'genres',
+      definitionkey: 'genres',
     };
-    this.include = true;
+    this.include = false;
     this.columns = [
       {
         property: 'id',
@@ -32,19 +32,11 @@ export class UserComponent implements OnInit {
       },
       {
         property: 'name',
-        label: 'Nombre',
+        label: 'Nombre del genero',
       },
       {
-        property: 'lastname',
-        label: 'Apellidos',
-      },
-      {
-        property: 'email',
-        label: 'Correo electronico',
-      },
-      {
-        property: 'role',
-        label: 'Permisos',
+        property: 'slug',
+        label: 'slug',
       },
     ];
   }

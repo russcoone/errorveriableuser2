@@ -8,7 +8,7 @@ export function basicAlert(icon = TYPE_ALERT.SUCCESS, title: string = '') {
     position: 'center',
     showConfirmButton: false,
     toast: true,
-    timer: 5000,
+    timer: 2000,
     timerProgressBar: true,
   });
 }

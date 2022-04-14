@@ -13,9 +13,11 @@ export class UsersService extends ApiService {
   constructor(apollo: Apollo) {
     super(apollo);
   }
-  getUsers() {
+  getUsers(page: number = 1, itemsPage: number = 20) {
     return this.get(USERS_LIST_QUERY, {
       include: true,
+      itemsPage,
+      page,
     }).pipe(
       map((result: any) => {
         return result.users;
