@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
-import { TablePaginationModule } from '@shared/table-pagination/table-pagination.module';
+import { TablePaginationModule } from '../../../@shared/table-pagination/table-pagination.module';
 
 @NgModule({
   declarations: [UserComponent],
