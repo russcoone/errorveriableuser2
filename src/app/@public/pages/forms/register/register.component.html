@@ -59,7 +59,7 @@
           placeholder="Enter Email"
           name="email"
           required
-          pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+          [pattern]="emailPattern"
           #email="ngModel"
           [(ngModel)]="register.email"
           class="form-control"
@@ -67,6 +67,8 @@
             'is-valid': email.valid,
             'is-invalid': email.invalid
           }"
+          [pattern]="emailPattern"
+          required
         />
         <div
           class="alert alert-danger"
