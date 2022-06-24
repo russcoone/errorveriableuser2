@@ -29,6 +29,23 @@ const routes: Routes = [
             (m) => m.RegisterModule
           ),
       },
+      {
+        path: 'active/:token',
+        loadChildren: () =>
+          import('./forms/active/active.module').then((m) => m.ActiveModule),
+      },
+      {
+        path: 'forgot',
+        loadChildren: () =>
+          import('./forms/forgot/forgot.module').then((m) => m.ForgotModule),
+      },
+      {
+        path: 'reset/:token',
+        loadChildren: () =>
+          import('./forms/change-password/change-password.module').then(
+            (m) => m.ChangePasswordModule
+          ),
+      },
     ],
   },
 ];

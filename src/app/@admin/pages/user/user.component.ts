@@ -144,6 +144,19 @@ export class UserComponent implements OnInit {
     }
   }
 
+  // private addUser(result) {
+  //   if (result.value) {
+  //     this.service.update(result.value).subscribe((res: any) => {
+  //       console.log(res);
+  //       if (res.status) {
+  //         basicAlert(TYPE_ALERT.SUCCESS, res.message);
+  //         return;
+  //       }
+  //       basicAlert(TYPE_ALERT.WARNING, res.message);
+  //     });
+  //   }
+  // }
+
   private async updateForm(html: string, user: any) {
     const result = await userFormBasicDialog('Modificar  usuario', html);
     console.log(result);
@@ -154,7 +167,7 @@ export class UserComponent implements OnInit {
     if (result.value) {
       const user = result.value;
       user.id = id;
-      console.log();
+      console.log(user);
       this.service.update(result.value).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
