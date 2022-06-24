@@ -12,7 +12,7 @@ export class GenresService extends ApiService {
   constructor(apollo: Apollo) {
     super(apollo);
   }
-  add(genre: String) {
+  add(genre: string) {
     return this.set(
       ADD_GENRE,
       {
@@ -25,7 +25,7 @@ export class GenresService extends ApiService {
       })
     );
   }
-  update(id: string, genre: String) {
+  update(id: string, genre: string) {
     return this.set(
       MODIFY_GENRE,
       {

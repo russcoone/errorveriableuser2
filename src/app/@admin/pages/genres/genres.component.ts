@@ -134,7 +134,7 @@ export class GenresComponent implements OnInit {
     });
   }
 
-  private async blockForm(genre: any) {
+  private async blockForm(user: any) {
     const result = await opcionWithDetails(
       '¿Bloquear?',
       'Si bloqueas el item seleccionado no se mostrara en la lista',
@@ -145,7 +145,17 @@ export class GenresComponent implements OnInit {
     );
     if (result === false) {
       // resulado falso, queremos bloquear
-      this.blockGenre(genre.id);
+      this.blockGenre(user.id);
     }
+  }
+  private blockUser(id: string) {
+    this.service.block(id).subscribe((res: any) => {
+      console.log(res);
+      if (res.status) {
+        basicAlert(TYPE_ALERT.SUCCESS, res.message);
+        return;
+      }
+      basicAlert(TYPE_ALERT.WARNING, res.message);
+    });
   }
 }
