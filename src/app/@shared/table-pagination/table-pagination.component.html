@@ -1,5 +1,17 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row justify-content-end">
+    <div class="col-md-3">
+      <select
+        class="form-select mr-3 mb-2"
+        style="width: auto"
+        [(ngModel)]="filterActiveValues"
+        (ngModelChange)="loadData()"
+      >
+        <option [ngValue]="'ALL'">Todos</option>
+        <option [ngValue]="'ACTIVE'">Activos</option>
+        <option [ngValue]="'INACTIVE'">Inactivos</option>
+      </select>
+    </div>
     <div class="col-md-2">
       <button class="btn btn-success" (click)="manageAction('add', '')">
         <i class="fas fa-plus-circle"></i> &nbsp; Añadir
@@ -7,6 +19,7 @@
     </div>
   </div>
 </div>
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -20,7 +33,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of data$ | async">
-        <td *ngFor="let val of tableColumns">{{ data[val.property] }}</td>
+        <td *ngFor="let val of tableColumns">
+          <span *ngIf="val.property != 'active'; else activeValue">
+            {{ data[val.property] }}
+          </span>
+          <ng-template #activeValue
+            ><span *ngIf="data[val.property] == true"
+              ><i class="fa fa-check-circle" aria-hidden="true"></i>
+            </span>
+            <span *ngIf="data[val.property] != true"
+              ><i class="fa fa-times-circle" aria-hidden="true"></i
+            ></span>
+          </ng-template>
+        </td>
         <td>
           <button
             type="button"
@@ -40,9 +65,19 @@
             type="button"
             class="btn btn-danger"
             (click)="manageAction('block', data)"
+            *ngIf="data['active'] != false; else unblockBtn"
           >
-            <i class="fas fa-lock"></i></button
-          >&nbsp;
+            <i class="fas fa-lock"></i>
+          </button>
+          <ng-template #unblockBtn>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="manageAction('unblock', data)"
+            >
+              <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            </button>
+          </ng-template>
         </td>
       </tr>
     </tbody>
@@ -57,7 +92,6 @@
     [pageSize]="infoPage.itemsPage"
   >
   </ngb-pagination>
-
   <select
     class="form-select"
     style="width: auto"
